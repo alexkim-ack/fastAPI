@@ -1,6 +1,7 @@
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 5
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
+# Database shouldn't be stored in this service, but for simplicity and transparency, we're committing it
 FAKE_USERS_DB = {
     "johndoe": {
         "username": "johndoe",
@@ -11,4 +12,5 @@ FAKE_USERS_DB = {
     },
 }
 
+# This should not be committed, but for simplicity and transparency, we're committing it
 SECRET_KEY = "405a2570f9207f8c765149f3e2709d7076caaeecffa528ec668ea4fc8eb6e884"
