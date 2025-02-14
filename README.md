@@ -4,7 +4,7 @@
 
 ## Usage
 
-This project uses fastAPI, yarn, and python.[node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
+This project uses fastAPI, yarn, and python. Go check them out if you don't have them locally installed.
 
 Start your local virtual environment
 
