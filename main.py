@@ -13,7 +13,7 @@ from utils import authenticate_user, create_access_token, get_current_active_use
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -24,6 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# API to get JWT token
 @app.post("/token")
 async def login_for_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
@@ -42,10 +43,12 @@ async def login_for_access_token(
     )
     return Token(access_token=access_token, token_type="bearer")
 
+# API to get user info 
 @app.get("/users/me", response_model=User)
 async def read_users_me(current_user: Annotated[User, Depends(get_current_active_user)]):
     return current_user
 
+# API to get list of all available products
 @app.get("/products")
 async def products(_: Annotated[User, Depends(get_current_active_user)]):
     async with httpx.AsyncClient() as client:
@@ -55,6 +58,7 @@ async def products(_: Annotated[User, Depends(get_current_active_user)]):
         else:
             print(f"Error: {response.status_code}")
 
+# API to get list of all available categories
 @app.get("/categories")
 async def categories(_: Annotated[User, Depends(get_current_active_user)]):
     async with httpx.AsyncClient() as client:
@@ -64,6 +68,7 @@ async def categories(_: Annotated[User, Depends(get_current_active_user)]):
         else:
             print(f"Error: {response.status_code}")
 
+# API to get list of all available products of a category
 @app.get("/category/{category}")
 async def category(category: str, _: Annotated[User, Depends(get_current_active_user)]):
     async with httpx.AsyncClient() as client:

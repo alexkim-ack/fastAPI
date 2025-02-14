@@ -11,6 +11,7 @@ from models import TokenData
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+# Gets user if valid JWT exists
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

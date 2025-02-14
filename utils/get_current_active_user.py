@@ -4,6 +4,7 @@ from typing import Annotated
 from .get_current_user import get_current_user
 from models import User
 
+# Checks if user is still active
 async def get_current_active_user(
     current_user: Annotated[User, Depends(get_current_user)],
 ):
